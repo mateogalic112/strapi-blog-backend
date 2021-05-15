@@ -47,8 +47,8 @@
       "default": false
     },
     "likes": {
-      "type": "integer",
-      "default": 0
+      "via": "post",
+      "collection": "like"
     }
   }
 }
