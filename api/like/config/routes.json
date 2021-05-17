@@ -2,14 +2,6 @@
 	"routes": [
 		{
 			"method": "GET",
-			"path": "/likes",
-			"handler": "like.find",
-			"config": {
-				"policies": []
-			}
-		},
-		{
-			"method": "GET",
 			"path": "/likes/given",
 			"handler": "like.find",
 			"config": {
@@ -22,6 +14,14 @@
 			"handler": "like.find",
 			"config": {
 				"policies": ["postAuthorIsMe"]
+			}
+		},
+		{
+			"method": "GET",
+			"path": "/likes/:postId",
+			"handler": "like.find",
+			"config": {
+				"policies": []
 			}
 		},
 		{

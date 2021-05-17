@@ -8,6 +8,28 @@ const { sanitizeEntity } = require('strapi-utils');
 
 module.exports = {
 	/**
+	 * Find likes from specific post.
+	 *
+	 * @return {Object}
+	 */
+
+	async find(ctx) {
+		let entities;
+
+		const { postId } = ctx.params;
+
+		if (!postId) {
+			entities = await strapi.services.restaurant.find({});
+		} else {
+			entities = await strapi.services.like.find({
+				post: postId,
+			});
+		}
+
+		return entities.map((entity) => sanitizeEntity(entity, { model: strapi.models.like }));
+	},
+
+	/**
 	 * Delete like from post.
 	 *
 	 * @return {Object}
