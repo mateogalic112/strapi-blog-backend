@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * Cron config that gives you an opportunity
@@ -18,4 +18,31 @@ module.exports = {
   // '0 1 * * 1': () => {
   //
   // }
+  /* "* * * * * *": async () => {
+    console.log("every second");
+
+    const users = await strapi.plugins[
+      "users-permissions"
+    ].services.user.fetchAll({});
+
+    console.log(users);
+
+    const res = await Promise.all(
+      users.map(async (user) => {
+        const posts = await strapi.services.post.find({
+          author: user.id,
+        });
+        console.log(posts.length);
+
+        const total = posts.reduce((acc, post) => acc + post.likes.length, 0);
+
+        await strapi.plugins["email"].services.email.send({
+          to: "lbajunmpbpoummdivz@upived.online",
+          from: "Strapitest@localhost.com",
+          subject: "Your likes total",
+          text: `You got ${total} likes`,
+        });
+      })
+    );
+  }, */
 };
