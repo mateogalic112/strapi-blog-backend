@@ -19,7 +19,7 @@ module.exports = {
 		const { postId } = ctx.params;
 
 		if (!postId) {
-			entities = await strapi.services.restaurant.find({});
+			entities = await strapi.services.like.find({});
 		} else {
 			entities = await strapi.services.like.find({
 				post: postId,
