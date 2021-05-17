@@ -9,6 +9,22 @@
 			}
 		},
 		{
+			"method": "GET",
+			"path": "/likes/given",
+			"handler": "like.find",
+			"config": {
+				"policies": ["isUserLoggedIn"]
+			}
+		},
+		{
+			"method": "GET",
+			"path": "/likes/received",
+			"handler": "like.find",
+			"config": {
+				"policies": ["postAuthorIsMe"]
+			}
+		},
+		{
 			"method": "POST",
 			"path": "/likes",
 			"handler": "like.create",
