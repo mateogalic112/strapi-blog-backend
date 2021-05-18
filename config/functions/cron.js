@@ -45,4 +45,8 @@ module.exports = {
       })
     );
   }, */
+
+	'* * * * * *': async () => {
+		await strapi.services.email.sendEmail('The subject', '<h1>Html</h1>');
+	},
 };
