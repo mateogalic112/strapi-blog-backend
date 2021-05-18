@@ -1,6 +1,6 @@
 module.exports = async (ctx, next) => {
 	if (!ctx.request.query['post.author']) {
-		return ctx.unauthorized('Provide a post.author={id');
+		return ctx.unauthorized('Provide a post.author={id}');
 	}
 
 	const targetUser = String(ctx.request.query['post.author']);
