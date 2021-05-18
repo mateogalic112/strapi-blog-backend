@@ -66,6 +66,10 @@
     "likes": {
       "via": "user",
       "collection": "like"
+    },
+    "orders": {
+      "via": "buyer",
+      "collection": "order"
     }
   }
 }

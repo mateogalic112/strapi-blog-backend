@@ -53,7 +53,7 @@
 			"path": "/posts/:id",
 			"handler": "post.delete",
 			"config": {
-				"policies": []
+				"policies": ["global::alwaysFail"]
 			}
 		}
 	]
