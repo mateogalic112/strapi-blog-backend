@@ -21,7 +21,7 @@
 			"path": "/orders/:id",
 			"handler": "order.findOne",
 			"config": {
-				"policies": []
+				"policies": ["global::isTargetUserLoggedIn"]
 			}
 		},
 		{
