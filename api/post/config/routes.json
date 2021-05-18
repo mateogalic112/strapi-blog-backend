@@ -13,7 +13,7 @@
 			"path": "/posts/me",
 			"handler": "post.me",
 			"config": {
-				"policies": []
+				"policies": ["global::isAuthenticated"]
 			}
 		},
 		{
