@@ -1,21 +1,24 @@
 'use strict';
 
 /**
- * `email` service.
+ * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-services)
+ * to customize this service
  */
 
-module.exports = {
-	// exampleService: (arg1, arg2) => {
-	//   return isUserOnline(arg1, arg2);
-	// }
+const DEFAULT_FROM = process.env.DEFAULT_FROM || 'mateogalic112@gmail.com';
+const DEFAULT_REPLY_TO = process.env.DEFAULT_REPLY_TO || 'mateogalic112@gmail.com';
 
-	sendEmail: async (subject, html) => {
-		await strapi.plugins['email'].services.email.send({
-			to: 'nvbpwkumdkamehyegl@miucce.com',
-			from: 'Strapitest@localhost.com',
-			replayTo: 'indigowebdev@gmail.com',
+module.exports = {
+	sendEmail: async (to, subject, html) => {
+		strapi.plugins['email'].services.email.send({
+			to: to,
+			from: DEFAULT_FROM,
+			replayTo: DEFAULT_REPLY_TO,
 			subject,
 			html,
 		});
+		return {
+			message: 'Email sent!',
+		};
 	},
 };
