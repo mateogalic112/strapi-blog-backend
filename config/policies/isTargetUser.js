@@ -1,10 +1,10 @@
 module.exports = async (ctx, next) => {
 	if (ctx.state.user) {
-		if (!ctx.request.query.buyer) {
-			return ctx.unauthorized('Please specify buyer ID');
+		if (!ctx.request.query.user) {
+			return ctx.unauthorized('Please specify user ID');
 		}
 
-		const targetUser = ctx.request.query.buyer.toString();
+		const targetUser = ctx.request.query.user.toString();
 		const loggedInUser = ctx.state.user.id.toString();
 
 		if (targetUser === loggedInUser) {

@@ -16,14 +16,30 @@ module.exports = {
 	async find(ctx) {
 		let entities;
 
+		const { user } = ctx.state;
 		const { postId } = ctx.params;
 
-		if (!postId) {
-			entities = await strapi.services.like.find({});
-		} else {
+		// Likes I have received
+		if (ctx.query['post.author']) {
+			entities = await strapi.services.like.find({
+				'post.author': ctx.query['post.author'],
+			});
+
+			// Likes my post have received
+		} else if (postId) {
 			entities = await strapi.services.like.find({
 				post: postId,
 			});
+
+			//Likes I gave
+		} else if (user) {
+			entities = await strapi.services.like.find({
+				user: user.id,
+			});
+
+			// Retrieve all likes
+		} else {
+			entities = await strapi.services.like.find({});
 		}
 
 		return entities.map((entity) => sanitizeEntity(entity, { model: strapi.models.like }));

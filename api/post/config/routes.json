@@ -45,7 +45,7 @@
 			"path": "/posts/:id",
 			"handler": "post.update",
 			"config": {
-				"policies": []
+				"policies": ["global::isTargetUser"]
 			}
 		},
 		{
