@@ -11,7 +11,7 @@ module.exports = {
 	lifecycles: {
 		async afterDelete(result, _) {
 			try {
-				const file = await createStrapi.plugins['upload'].services.upload.fetch({
+				const file = await strapi.plugins['upload'].services.upload.fetch({
 					id: result.featured_image.id,
 				});
 
