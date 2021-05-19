@@ -38,9 +38,9 @@
       "type": "text"
     },
     "author": {
+      "via": "posts",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "posts"
+      "model": "user"
     },
     "is_featured": {
       "type": "boolean",
