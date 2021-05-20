@@ -1,54 +1,51 @@
 {
-  "kind": "collectionType",
-  "collectionName": "posts",
-  "info": {
-    "name": "post",
-    "description": ""
-  },
-  "options": {
-    "increments": true,
-    "timestamps": true,
-    "draftAndPublish": true
-  },
-  "pluginOptions": {},
-  "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
-    },
-    "content": {
-      "type": "richtext"
-    },
-    "featured_image": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
-    },
-    "excerpt": {
-      "type": "text"
-    },
-    "author": {
-      "via": "posts",
-      "plugin": "users-permissions",
-      "model": "user"
-    },
-    "is_featured": {
-      "type": "boolean",
-      "default": false
-    },
-    "likes": {
-      "via": "post",
-      "collection": "like"
-    }
-  }
+	"kind": "collectionType",
+	"collectionName": "posts",
+	"info": {
+		"name": "post",
+		"description": ""
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": true
+	},
+	"pluginOptions": {},
+	"attributes": {
+		"title": {
+			"type": "string"
+		},
+		"slug": {
+			"type": "uid",
+			"targetField": "title"
+		},
+		"content": {
+			"type": "richtext"
+		},
+		"featured_image": {
+			"model": "file",
+			"via": "related",
+			"allowedTypes": ["images", "files", "videos"],
+			"plugin": "upload",
+			"required": false,
+			"pluginOptions": {}
+		},
+		"excerpt": {
+			"type": "text"
+		},
+		"author": {
+			"via": "posts",
+			"plugin": "users-permissions",
+			"model": "user",
+			"private": true
+		},
+		"is_featured": {
+			"type": "boolean",
+			"default": false
+		},
+		"likes": {
+			"via": "post",
+			"collection": "like"
+		}
+	}
 }
