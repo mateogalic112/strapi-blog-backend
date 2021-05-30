@@ -36,8 +36,7 @@
 		"author": {
 			"via": "posts",
 			"plugin": "users-permissions",
-			"model": "user",
-			"private": true
+			"model": "user"
 		},
 		"is_featured": {
 			"type": "boolean",
