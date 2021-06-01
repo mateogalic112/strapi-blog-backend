@@ -9,6 +9,9 @@ import React, { useState, useEffect, memo } from 'react';
 import { request } from 'strapi-helper-plugin';
 import pluginId from '../../pluginId';
 
+import { Block, Container } from '../../components/StrapiStyled';
+import { InputText, Button, Padded } from '@buffetjs/core';
+
 const HomePage = () => {
 	const [pk, setPk] = useState('');
 
@@ -18,8 +21,9 @@ const HomePage = () => {
 				const res = await request(`/${pluginId}/settings`);
 				const { pk } = await res;
 				setPk(pk);
+				strapi.notification.success('Success');
 			} catch (error) {
-				console.log('error', error.message);
+				strapi.notification.error(error.toString());
 			}
 		};
 		loadPk();
@@ -27,25 +31,41 @@ const HomePage = () => {
 
 	const updatePk = async (e) => {
 		e.preventDefault();
-
+		strapi.lockApp();
 		try {
 			const res = await request(`/${pluginId}/settings`, {
 				method: 'POST',
 				body: { pk },
 			});
+			strapi.notification.success('Success');
 		} catch (error) {
-			console.log('error', error);
+			strapi.notification.error(error.toString());
 		}
+		strapi.unlockApp();
 	};
 
 	return (
-		<div>
-			<h1>Stripe</h1>
-			<p>Save your private key here</p>
-			<form onSubmit={updatePk}>
-				<input type="text" value={pk} onChange={(e) => setPk(e.target.value)} />
-				<button>Submit</button>
-			</form>
+		<div className="row">
+			<div className="col-md-12">
+				<Container>
+					<Block>
+						<h1>Stripe</h1>
+						<p>Save your private key here</p>
+						<form onSubmit={updatePk}>
+							<InputText
+								type="text"
+								name="input"
+								placeholder="Stripe PK"
+								value={pk}
+								onChange={(e) => setPk(e.target.value)}
+							/>
+							<Padded top>
+								<Button color="primary" label="Submit" />
+							</Padded>
+						</form>
+					</Block>
+				</Container>
+			</div>
 		</div>
 	);
 };

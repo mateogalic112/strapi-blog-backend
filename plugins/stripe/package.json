@@ -7,7 +7,10 @@
 		"icon": "dollar-sign",
 		"description": "Description of stripe plugin."
 	},
-	"dependencies": {},
+	"dependencies": {
+		"@buffetjs/core": "^3.3.6",
+		"styled-components": "^5.3.0"
+	},
 	"author": {
 		"name": "Indigo Design",
 		"email": "mateo@indigo-web.design",
