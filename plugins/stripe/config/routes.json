@@ -1,0 +1,28 @@
+{
+	"routes": [
+		{
+			"method": "GET",
+			"path": "/",
+			"handler": "stripe.index",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "POST",
+			"path": "/settings",
+			"handler": "stripe.updateSettings",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "GET",
+			"path": "/settings",
+			"handler": "stripe.retrieveSettings",
+			"config": {
+				"policies": []
+			}
+		}
+	]
+}
