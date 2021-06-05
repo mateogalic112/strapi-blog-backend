@@ -1,5 +1,5 @@
 'use strict';
-
+const uninitializedStripe = require('stripe');
 /**
  * stripe.js controller
  *
@@ -65,5 +65,31 @@ module.exports = {
 		ctx.send({
 			pk: pk ? pk : '',
 		});
+	},
+
+	createPaymentIntent: async (ctx) => {
+		let { amount } = ctx.request.body;
+
+		amount = parseInt(amount);
+
+		if (isNaN(amount) || amount === 0) {
+			return ctx.throw(400, 'Not valid amount');
+		}
+
+		const pluginStore = strapi.store({
+			environment: strapi.config.environment,
+			type: 'plugin',
+			name: 'stripe',
+		});
+
+		const pk = await pluginStore.get({ key: 'pk' });
+		const stripe = uninitializedStripe(pk);
+
+		const paymentIntent = await stripe.paymentIntents.create({
+			amount,
+			currency: 'usd',
+		});
+
+		ctx.send(paymentIntent);
 	},
 };
